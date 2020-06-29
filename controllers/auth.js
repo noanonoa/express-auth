@@ -26,7 +26,7 @@ router.post('/register', function(req, res) {
         // IF USER WAS CREATED
         if (created) {
             // AUTHENTICATE USER AND START AUTHORIZATION PROCESS
-            consolele.log("User created! 🙌🏼🙌🏼🙌🏼");
+            console.log("User created! 🙌🏼🙌🏼🙌🏼");
             res.redirect('/');
             // ELSE IF USER ALREADY EXISTS
         } else {
@@ -46,7 +46,7 @@ router.post('/register', function(req, res) {
 
 //LOGIN GET ROUTE
 router.get('/login', function(req, res) {
-    res.render('auth/register');
+    res.render('auth/login');
 })
 //LOGIN POST ROUTE
 
