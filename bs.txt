@@ -31,3 +31,6 @@ create 'models' folder
     user.js
 
 
+npm install passport
+
+
