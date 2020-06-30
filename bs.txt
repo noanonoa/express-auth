@@ -32,5 +32,6 @@ create 'models' folder
 
 
 npm install passport
-
-
+npm install passport-local
+npm install pg
+npm install sequelize

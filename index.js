@@ -10,6 +10,10 @@ const ejsLayouts = require('express-ejs-layouts');
 const helmet = require('helmet');
 const session = require('express-session');
 const flash = require('flash');
+const passport = require('./config/ppConfig');
+const db = require('./models');
+//ADD A LINK TO OUR CUSTOMER MIDDLEWARE FOR isLoggedIn
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 
 
 //APP SETUP
@@ -24,6 +28,30 @@ app.use(ejsLayouts);
 app.use(require('morgan')('dev'));
 app.use(helmet());
 
+//CREATE NEW INSTANCE OF CLASS Sequelize Store
+const sessionStore = new SequelizeStore({
+    db: db.sequelize,
+    expiration: 1000 * 60 * 30
+})
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: true
+}))
+
+sessionStore.sync();
+
+//INITIALIZE AND LINK flash MESSAGE AND passport AND session
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+app.use(function(req, res, next) {
+    res.locals.alert = req.flash();
+    res.locals.currentUser = req.user;
+})
 
 
 //ROUTES

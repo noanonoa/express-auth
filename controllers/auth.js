@@ -6,8 +6,8 @@ const router = express.Router();
 const db = require('../models');
 //IMPORT MIDDLEWARE
 const flash = require('flash');
-//TODO: UPDATE REQUIRE PASSPORT CONFIG FILE PATH
-const passport
+//REQUIRE PASSPORT CONFIG FILE PATH
+const passport = require('../config/ppConfig');
 
 //REGISTER GET ROUTE
 router.get('/register', function(req, res) {
