@@ -12,8 +12,9 @@ const session = require('express-session');
 const flash = require('flash');
 const passport = require('./config/ppConfig');
 const db = require('./models');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 //ADD A LINK TO OUR CUSTOMER MIDDLEWARE FOR isLoggedIn
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const isLoggedIn = require('./middleware/isLoggedIn');
 
 
 //APP SETUP
@@ -51,6 +52,8 @@ app.use(flash());
 app.use(function(req, res, next) {
     res.locals.alert = req.flash();
     res.locals.currentUser = req.user;
+
+    next();
 })
 
 
@@ -59,6 +62,11 @@ app.get('/', function(req, res) {
 //CHECK TO SEE IF USER LOGGED IN
     res.render('index');
 })
+
+app.get('/profile', isLoggedIn, function(req, res) {
+    res.render('profile');
+})
+
 
 //INCLUDE AUTH CONTROLLER
 app.use('/auth', require('./controllers/auth'));
