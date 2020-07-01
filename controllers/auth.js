@@ -59,15 +59,10 @@ router.post('/login', function(req, res, next) {
         // IF NO USER AUTHENTICATED
         if (!user) {
             req.flash('error', 'Invalid username or password');
-            // SAVE TO OUR USER SESSION NO USERNAME
-            req.session.save(function() {
-                return res.redirect('/auth/login');
-            })
-            // REDIRECT OUR USER TO TRY LOGGING IN AGAIN
-
+            console.log(`💩butts`)
+            return res.redirect('/auth/login');
         }
         if (error) {
-            // ADD NEXT param FROM FUNCTION
             return next(error);
         }
 
@@ -78,19 +73,11 @@ router.post('/login', function(req, res, next) {
             req.flash('success', 'You are validated and logged in.')
             //IF SUCCESS SAVE SESSION AND REDIRECT USER
             req.session.save(function () {
-                return res.redirect('/');
+                return res.redirect('/profile');
             })
         })
     })(req, res, next);
 })
-
-router.post('/login', passport.authenticate('local', {
-    //THESE NEED TO BE PATHS AND NOT VIEWS FILES
-    successRedirect: '/',
-    failureRedirect: '/auth/login',
-    successFlash: 'Welcome to our app!',
-    failureFlash: 'Invalide username or password.'
-}));
 
 router.get('/logout', function(req, res) {
     req.logout();
