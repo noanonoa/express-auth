@@ -5,7 +5,7 @@ const router = express.Router();
 //IMPORT DB
 const db = require('../models');
 //IMPORT MIDDLEWARE
-const flash = require('flash');
+const flash = require('connect-flash');
 //REQUIRE PASSPORT CONFIG FILE PATH
 const passport = require('../config/ppConfig');
 
