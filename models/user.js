@@ -3,7 +3,7 @@
 //DEFINE use CASE
 'use strict';  // WHAT IS 'USE STRICT'?
 //IMPORT ANY REQUIRED LIBRARIES
-const bscrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 //DECLARE user MODEL FORMAT
 module.exports = function(sequelize, DataTypes) {
     //DEFINE user OBJECT
