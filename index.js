@@ -9,7 +9,7 @@ const ejsLayouts = require('express-ejs-layouts');
 // helmet, morgan, passport, AND CUSTOM MIDDLEWARE, express-sessions, sequelize sessions, flash
 const helmet = require('helmet');
 const session = require('express-session');
-const flash = require('flash');
+const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const db = require('./models');
 //ADD A LINK TO OUR CUSTOMER MIDDLEWARE FOR isLoggedIn
